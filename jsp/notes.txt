@@ -1,0 +1,12 @@
+jsp is extension to servlet and thus lifecycle of jsp is just a superset of that of servlet.
+The JSP pages follows these phases:
+
+1    Translation of JSP Page
+2   Compilation of JSP Page
+3    Classloading (class file is loaded by the classloader)
+4    Instantiation (Object of the Generated Servlet is created).
+5    Initialization ( jspInit() method is invoked by the container).
+6    Reqeust processing ( _jspService() method is invoked by the container).
+7    Destroy ( jspDestroy() method is invoked by the container).
+
+note:  underscore appeaing before any method mane as _jspService means that it not recommended to overide them

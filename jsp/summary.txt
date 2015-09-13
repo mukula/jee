@@ -1,0 +1,2 @@
+i order to avoid sciptlets,we use EL and jstl
+

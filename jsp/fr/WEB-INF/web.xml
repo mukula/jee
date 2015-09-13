@@ -1,0 +1,22 @@
+<web-app>
+<context-param>
+<param-name>kj</param-name>
+<param-value>jj</param-value>
+
+</context-param>    
+<servlet>  
+<servlet-name>son</servlet-name>  
+<jsp-file>/mjsp.jsp</jsp-file>  
+  <init-param>  
+<param-name>dname</param-name>  
+<param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>  
+</init-param>  
+  
+</servlet>  
+  
+<servlet-mapping>  
+<servlet-name>son</servlet-name>  
+<url-pattern>sai</url-pattern>  
+</servlet-mapping>  
+ 
+</web-app>

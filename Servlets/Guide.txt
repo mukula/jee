@@ -1,0 +1,17 @@
+by default,weblogic is installed in oracle folder in c drive
+
+after installing weblogic,copy "C:\Oracle\Middleware\wlserver_12.1\server\lib\weblogic.jar" and 
+"C:\Oracle\Middleware\modules\javax.servlet_2.0.0.0_3-0.jar" to "C:\Oracle\Middleware\jdk160_29\jre\lib\ext".
+
+to create servlet directory,for eg, create f1 folder in which you have to create web-inf folder.
+start cmd and set path="C:\Oracle\Middleware\jdk160_29\bin" . you can create proper war file only after setting path.
+
+now after setting path,compile the Servlet file . place the .class file in f1\WEB-INF\Classes\ .
+
+now go inside f1 folder in command prompt eg: f:\temp\f1.
+
+now create war file inside f1 folder as jar cvf f1.war *.*
+
+f1.war is created inside f1.copy this to "C:\Oracle\Middleware\user_projects\domains\gsk\autodeploy\"
+
+now start weblogic domain.

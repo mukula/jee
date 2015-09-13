@@ -1,0 +1,11 @@
+cd F:\jee\Servlets\a
+cd F:\jee\jsp
+
+set path="C:\Oracle\Middleware\jdk160_29\bin"
+
+
+
+
+copy C:\Oracle\Middleware\user_projects\domains\gsk\autodeploy
+
+copy F:\softwares\exe\tomcat\webapps

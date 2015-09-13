@@ -1,0 +1,26 @@
+install tomcat and while installation check the admin-gui option.
+
+now the tomcat is installed at F:\softwares\exe\tomcat
+
+copy standard.jar and jstl.jar into F:\softwares\exe\tomcat\lib
+
+copy servlet-api.jar and jsp-api.jar from F:\softwares\exe\tomcat\lib to C:\Program Files (x86)\Java\jdk1.8.0\jre\lib\ext
+
+Note: there must be classes folder inside WEB-INF , not Classes.
+
+compile the war file using jar of jdk 1.6 ,not jdk 1.8 as :
+C:\Oracle\Middleware\jdk160_29\bin\jar.exe -cvf ct1.war *.*
+
+now start the tomcat by clicking on F:\softwares\exe\tomcat\bin\Tomcat8.exe
+
+not go to http://localhost:8080/manager/html
+user name: sai ,password : sai
+
+go to browse and select war file,then click deploy and its done
+
+if not working:
+
+>check if ext folder in jre doesnot contain any other servlet api 
+>it should be classes in web-inf,not Classes
+
+

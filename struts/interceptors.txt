@@ -1,0 +1,77 @@
+interceptors does cross cutting,pre-processing and post processing tasks.
+
+most commonly used interceptors are defined in default stack in struts default package some of those interceptors are:
+params,file-uplaod,workflow,exceprion,checkbox,debugging etc.
+
+ActionInvocation - this is important class that orchestrates the entire execution of an action, including the sequential firing of the associated interceptor
+stack.
+
+the workflow happens recursively.
+the ActionInvocation class invoke the call to intercept() of the intercept in which it passes it's own reference.the intercept then calls the invoke of recieved reference of ActionSupport
+class after doing the preprocessing. see pg no:79-81
+
+there are several interfaces which will be implemented by our Action  class to do some task by interceptors.for eg, if we implement Preparable interface,then the code that we wrote inside prepare() will
+be executed by Prepare interceptor. ActionSupport class implements many such interfaces and thus we can extend it.so ActionSupport class is basically a adapter class.
+
+By workflow we mean the path of the processing as it works its way down through the interceptors, through the action and result, and then back out the interceptors.
+
+In normal workflow, the processing will go all the way down to the action and result before climbing back out. Workflow interceptors are interceptors
+that inspect the state of the processing and conditionally intervene and alter this normal path, sometimes only slightly, and sometimes quite drastically.
+
+there is a intercept called workflow interceptor.it rests in default stack.the default stack rests in strut-default package which we normally extend.
+workflow interceptor works with our actions to provide data validation and subsequent workflow alteration if a validation error occurs.it can alter the workflow.
+
+workflow interceptor executes the validation logic written by us,where as validation interceptor executes  its own logic for validation.
+validation interceptor fires before the workflow interceptor, and this sequencing is handled by the defaultStack.
+
+prepare interceptor:
+
+when we implement Preparable interface,we need to implement the prepare method to do task is required to be processed before execute(). there is some other method that we added to workflow 
+in our action class for eg myFunc() , then we can make a method by name prepareMyFun() to execute it before myFunc().
+
+
+declaring interceptors.
+XML is your only option for declaring your interceptors; the annotations mechanism doesn’t yet support declaring interceptors
+
+it we want our action class to use a interceptor,we just do it by making entry in xml as:
+<action name="MyAction" class="myactions.MyAction">
+<interceptor-ref name="timer"/>
+<interceptor-ref name="logger"/>
+<result>Success.jsp</result>
+</action>
+
+the interceptors are fired in sequence they are defined.
+
+> when we extend struts-default, we directly implemets interceptors of default stack equivalent  to:
+
+<action name="MyAction" class="org.actions.myactions.MyAction">
+<interceptor-ref name="default-stack"/>
+<result>Success.jsp</result>
+</action>
+
+thus we need not write  <interceptor-ref name="default-stack"/> as its done by default.
+
+but if we use any other interceptors ,we have to mention <interceptor-ref name="default-stack"/> as:
+<action name="MyAction" class="myactions.MyAction">
+<interceptor-ref name="timer"/>
+<interceptor-ref name="logger"/>
+<interceptor-ref name="default-stack"/>
+<result>Success.jsp</result>
+</action>
+
+
+to pass parameters into the interceptor's method:
+<interceptor-ref name="workflow">
+<param name="excludeMethods">input,back,cancel,browse</param>
+</interceptor-ref>
+
+if the ref name is stack like dafault-stack,then:
+<action name="YourAction" class="org.actions.youractions.YourAction">
+<interceptor-ref name="defaultStack">
+<param name="workflow.excludeMethods">doSomething</param>
+</interceptor-ref>
+<result>Success.jsp</result>
+</action>
+
+----- creating a interceptor------
+

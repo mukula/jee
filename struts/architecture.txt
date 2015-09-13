@@ -1,0 +1,18 @@
+http://www.codejava.net/frameworks/struts/introduction-to-struts-2-framework?showall=&start=3
+struts 2 architecture:
+
+Servlet filters - Servlet filter comprises of 3 major components, those are ActionContextCleanUp, SiteMesh and FilterDispatcher
+1) ActionContextCleanUp- optional -used for integration of struts with other java technologies.
+2) SiteMesh- optional - used for look and feel.
+3) FilterDispatcher-It is a required filter and used as a link between filters and ActionMapper. FilterDispatcher handles Action execution, cleanup of context.
+
+Struts Core : This is the actual Model part of Struts 2. It contains the main business logic. 
+1)  FilterDispatcher: it invokes ActionMapper to check whether incoming request is mapped to any action or interceptor or nothing.
+2)  ActionMapper : it Maps the incoming request URI to an action name and namespace.
+3)  ActionProxy : it uses ConfigurationFile manager and creates an instance of ActionInvocation which will instantiate Action class.
+The ConfigurationProvider interface describes the framework's configuration. By default, the framework loads its configurations via an XML document by using the StrutsXmlConfigurationProvider
+4)  ActionInvocation: it  will take help of struts.xml file to determine which method of the Action class should be called and instantiates it.
+      ActionProxy can also call Interceptors with the help of ActionInvocation.
+5) Action: we place the code to be executed in action classes.	 
+6)  Interceptors: discussed in Interceptors.txt
+
