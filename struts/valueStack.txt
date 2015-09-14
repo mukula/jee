@@ -1,0 +1,9 @@
+When Struts 2 receives a request, it immediately creates an ActionContext, a ValueStack,and an action object.
+then the action object is quickly placed on the ValueStack so that its properties will be accessible, via OGNL.
+
+First, these will receive the automatic data transfer from the incoming request parameters.this occurs because the params interceptor sets
+those parameters on properties exposed on the ValueStack, upon which the action object sits.
+
+one tricky bit about the ValueStack: The ValueStack pretends to be a single object when OGNL expressions are resolved against it. This virtual object
+contains all the properties of all the objects that’ve been placed on the stack. If multiple occurrences of the same property exist, those lowest down in the stack are hidden
+by the uppermost occurrence of a similarly named property.

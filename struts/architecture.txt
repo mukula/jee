@@ -9,10 +9,27 @@ Servlet filters - Servlet filter comprises of 3 major components, those are Acti
 Struts Core : This is the actual Model part of Struts 2. It contains the main business logic. 
 1)  FilterDispatcher: it invokes ActionMapper to check whether incoming request is mapped to any action or interceptor or nothing.
 2)  ActionMapper : it Maps the incoming request URI to an action name and namespace.
-3)  ActionProxy : it uses ConfigurationFile manager and creates an instance of ActionInvocation which will instantiate Action class.
+3)  ActionProxy : it uses ConfigurationFile manager and creates an instance of ActionInvocation which will instantiate Action class.it gets the information from the struts.xml file.
 The ConfigurationProvider interface describes the framework's configuration. By default, the framework loads its configurations via an XML document by using the StrutsXmlConfigurationProvider
 4)  ActionInvocation: it  will take help of struts.xml file to determine which method of the Action class should be called and instantiates it.
       ActionProxy can also call Interceptors with the help of ActionInvocation.
 5) Action: we place the code to be executed in action classes.	 
 6)  Interceptors: discussed in Interceptors.txt
+
+
+overview 
+
+    1]User sends a request for the action
+    2]Container maps the request in the web.xml file and gets the class name of controller.
+    3]Container invokes the controller (StrutsPrepareAndExecuteFilter or FilterDispatcher). Since struts2.1, it is StrutsPrepareAndExecuteFilter. Before 2.1 it was FilterDispatcher.
+    4]Controller gets the information for the action from the ActionMapper
+    5]Controller invokes the ActionProxy
+    6]ActionProxy gets the information of action and interceptor stack from the configuration manager which gets the information from the struts.xml file.
+    7]ActionProxy forwards the request to the ActionInvocation
+    8]ActionInvocation invokes each interceptors and action
+    9]A result is generated
+    10]The result is sent back to the ActionInvocation
+    11]A HttpServletResponse is generated
+    12]Response is sent to the user
+
 

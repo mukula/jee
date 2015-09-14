@@ -3,6 +3,10 @@ interceptors does cross cutting,pre-processing and post processing tasks.
 most commonly used interceptors are defined in default stack in struts default package some of those interceptors are:
 params,file-uplaod,workflow,exceprion,checkbox,debugging etc.
 
+generally,the action class's execute returns a string on basis of which the result is shown.but if a interceptor returns a string before action class is executed,the action class is
+not executed at all and theflow changes.
+
+param interceptor: this interceptor will move the data from the request object to the ValueStack.
 ActionInvocation - this is important class that orchestrates the entire execution of an action, including the sequential firing of the associated interceptor
 stack.
 
@@ -74,4 +78,4 @@ if the ref name is stack like dafault-stack,then:
 </action>
 
 ----- creating a interceptor------
-
+http://www.javatpoint.com/struts-2-custom-interceptor-example-tutorial

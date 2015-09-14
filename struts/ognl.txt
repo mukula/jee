@@ -1,0 +1,17 @@
+Object graph navigation language: It helps move data from the request parameters onto our action’s JavaBeans properties.
+
+ValueStack ?
+
+to access data from ValueStack , we use ongl expression language.
+
+
+to access multiple request parameters,we need to initialize arrays,but not lists.
+
+when we use List,its default type is String.to change this type,use xxx.properties file and write Element-weights=java.lang.Double  in it t make type of double. xxx is the name of action class.
+when we define the type in this way,we can not preinitialize the List,else we get the error.
+
+we need not initialize the collections like list,map etc.
+
+we can access map by key as user['sai'] , but not by index as user[0].
+
+

@@ -1,0 +1,8 @@
+nonExistingProperty on the ValueStack = <s:property value="haw" />
+nonExistingProperty on the ValueStack = <s:property value="haw" default="doesNotExist" />
+
+in the first tag,if the field haw is not found in value stack,than empty string is returned.but in second tag , "doesNotExist" is returned.
+
+Attributes passed to Struts 2 tags are divided into two categories. Attributes that’ll be used by the tag as String values are referred to as string attributes.
+Attributes that point to some property on the ValueStack, or in the ActionContext are referred to as nonstring attributes. All nonstring attributes will be interpreted 
+as OGNL expressions and used to locate the property that’ll contain the value to be used in the tag processing.

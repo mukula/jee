@@ -1,6 +1,8 @@
 
 a framework attempts to provide a platform on which application can be built quickly by automating few common tasks and providing a achitecture that we do like to implement.
 
+struts 2 is built over Servlet API.
+
 programatic approach: in this approach,to do a particular task,we write the required program
 declrative approach; here we use xml file and java annoataions to do require task.
 struts lifecycle:
@@ -16,6 +18,8 @@ the default stack rests in strut-default package which we normally extend.defaul
  
 struts actions:
 
+In struts 2, action class is POJO (Plain Old Java Object).
+POJO means you are not forced to implement any interface or extend any class.
 Actions are the core of the Struts2 framework.
 the most important role of actions is encapsulating the actual work to be done for a given request.second major role is to assist the framework in determining which result to view to client.
 third major role is request data transfer as the data from request can be obtained in action's java beans properties.
