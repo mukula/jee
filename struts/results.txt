@@ -1,0 +1,81 @@
+Custom results:
+
+custom results are made by implemeting Result interface.
+
+first we make a class named Dai.java  to be custom result.
+
+package sai
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.Result;
+public class Dai implements Result {
+		private static final long serialVersionUID = 1599674291550687699L;
+
+	public void execute(ActionInvocation invocation)
+			throws Exception
+			{
+		PrintWriter pw= ServletActionContext.getResponse().getWriter();
+		pw.println("hello");
+		
+	}
+}
+
+
+if we have a action class Sai.java, to set the above result to Sai.java ,make following entry in struts.xml :
+
+<package name="default"  extends="struts-default">  
+<result-types>
+<result-type name="cus" class="sai.Dai" />
+</result-types>
+<action name="gsk" class="sai.Sai" >
+<result type="cus"></result>  
+</action>  
+</package>  
+
+----------------------------------------
+
+for Ajax,we use  custom results.
+we will use above examples to illustrate the working of ajax with struts.we just need to add index.jsp
+
+index.jsp:
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>fantom</title>
+<script type="text/javascript">
+var request;  
+function sendInfo()  
+{  
+if(window.XMLHttpRequest){  
+request=new XMLHttpRequest();  
+}  
+else if(window.ActiveXObject){  
+request=new ActiveXObject("Microsoft.XMLHTTP");  
+}  
+request.onreadystatechange=getInfo;  
+request.open("GET","gsk",true);  
+request.send();  
+}    
+function getInfo(){  
+if(request.readyState==4){  
+var val=request.responseText;  
+document.getElementById('sam').innerHTML=val;  
+}  
+}  
+window.onLoad=sendInfo();
+</script>
+</head>
+<body>
+hieee
+<div id="sam"></div>
+</body>
+</html>
+
+
+now when we load index.jsp,the ajax request is sent to action class mapped by gsk i.e Sai.java,and the result of it is Dai.java.as Dai.java prints hello,we get the final ouput as:
+
+hieee
+hello.
+
+
+

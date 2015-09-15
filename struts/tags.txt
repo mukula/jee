@@ -1,8 +1,27 @@
-nonExistingProperty on the ValueStack = <s:property value="haw" />
-nonExistingProperty on the ValueStack = <s:property value="haw" default="doesNotExist" />
+ <s:property value="haw" />
+ <s:property value="haw" default="doesNotExist" />
 
 in the first tag,if the field haw is not found in value stack,than empty string is returned.but in second tag , "doesNotExist" is returned.
 
 Attributes passed to Struts 2 tags are divided into two categories. Attributes that’ll be used by the tag as String values are referred to as string attributes.
 Attributes that point to some property on the ValueStack, or in the ActionContext are referred to as nonstring attributes. All nonstring attributes will be interpreted 
 as OGNL expressions and used to locate the property that’ll contain the value to be used in the tag processing.
+
+
+if the dafault has to be dynamic,we can use expression language as:
+
+<s:property value="haw" default="%{noEx}" />
+
+here the value is obtained from field noEx from value stack
+
+----Data tags---
+1) Property Tag - discussed. for more see pg: 142
+2) Set tag : it allows us to create new references to values
+    <s:set name="usr" value="yun"/>
+	here,the value of usr is set to value of yun, not "yun".
+	if we want to access the value of usr,we can use <s:property value="usr" />  or <s:property value="#usr" />
+	by default,usr is created in valuestack,but if we want to create in other scope such as session : <s:set name="usr" scope="session" value="yun"/> and to access it use:
+	 <s:property value="#session['usr']" />
+3) push tag :it allows us to push the properties onto valuestack
+4) bean tag
+5) action tag: to invoke othe action 

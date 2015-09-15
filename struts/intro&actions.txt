@@ -70,6 +70,15 @@ redirect is just like sendRedirect in servlets,where a given uri is pasted in ad
 </result>  
 </action>  
 
+----
+
+suppose our action class has a property/field called name, and we want to set it in struts.xml,we can as:
+<action name="gsk" class="sai.Sai">
+<param name="name">saikiran</param>
+<result>welcome.jsp</result>
+</action>
+
+
 
 
 
