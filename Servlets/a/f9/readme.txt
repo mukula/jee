@@ -24,5 +24,9 @@ two methods to R.D:
  
  using R,D,we can not go beyond servlet context as in case of sendRedirect.
  
- 
  in this example,we can see the attributes also.
+ 
+ we use include when we want to include other pages in dynamically generated webpage. for eg,we can include the templates of footer and header in generated web page.
+ we use sendRedirect when we want to display a different page like login or idex page.
+ using sendRedirect,we cant pass the request and response objects to redirected page,to do so,we use forward method.
+ 

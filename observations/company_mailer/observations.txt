@@ -1,0 +1,3 @@
+in this project,i got a idea of usage of include and sendRedirect method.
+we can create different classes for validation.
+as servlets are meant to create dynamic web oages,use this facility whenever possible.this feature is used in this project to generate dynamic links in ViewMailServlet.
