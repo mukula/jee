@@ -1,0 +1,1 @@
+session factory- one object per application. we can create multiple sessions from session factory.then we can use session to save model objects .
