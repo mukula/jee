@@ -1,0 +1,9 @@
+inheritance:
+
+by default,hibernate accomodate the parent classes and child classes in single table.
+if we want to save all of them in different table,we can use @Inheritance(strategy=Inheritance.TABLE_PER_CLASS)
+so in this case,the child class table will contain the inherited fields and the fields which are present in child classes.
+
+if we use @Inheritance(strategy=Inheritance.JOINED) then child classes will not contain inherited properties.it will contain the properties which are defined in it and a primary key which is 
+inherited from parent class and it acts as a foreign key.
+
