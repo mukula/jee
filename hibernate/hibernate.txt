@@ -1,1 +1,39 @@
-session factory- one object per application. we can create multiple sessions from session factory.then we can use session to save model objects .
+the problem with relation database is its use in java applications.since java is a oop language,we have the data stored inside objects,and when we have to save the objects,we have to 
+extract the from the objects and save it in DB and we have to do it always.one solution is to make a class that extracts all the data members from given objects and save it in DB.this class 
+will do the job of ORM,but ORM is lot more bigger than this job. so we have a complete framework dedicated for this called Hibernate.Hibernate is a great orm tool.
+
+to use hibernate ,we need to use java bean classes as hibernate uses getters and setter to set and get data.
+session factory- one object per application. we can create multiple sessions from session factory.then we can use session to save model objects . we create sessionfactory only once per
+application
+
+
+new Configuration().configure() : it reads the configuration  file and reads the DB configuration.
+
+static members are not persisted by hibernate as static members are meant to be shared by all the classes,so it does not make sense to persist it.
+transient members are also not persisted.else we can give the annotation of @Transient
+
+for date,we can use @Temporal annotation
+
+hibernate uses varchar by default for all strings which has limit of 255. we can change it by annotation @Lob(large object)
+
+we can make hibernate to generate primary keys by @Id @GeneratedValue
+
+in hibernate  we use two kinds of objects: entity and value objects.
+entity obj: an object that is independent and it contains data that provide meaning about itself.
+value obj: an object that does not make sense to itself,it make sense to other object. like a address object make sense for employee object.
+generally , objects inside a entity are value objects.but a entity can contain a entity object. 
+
+if we have a object as a data member inside entity class,we must declare the annotation of @Embeddable in class of that member object and @Embedded above the object declaration in entity class.
+
+we can change the name of a field of value object used in DB through entity class by @AttributeOverride.
+
+we can make a value object as primary key i.e combination of data members of value object act as primary  key .it can be done by @EmbeddedId.
+
+we can save collections by @ElementCollection. hibernate creates a separate table for collection.
+
+for one to one mapping use @OneToOne 
+
+in many to many, eg many users are mapped to many vehicles,then we can provide mappedBy attribute in @ManyToMany in any one of the user or vehicle,if it is in user,then we can provide @JoinTable
+in vehicle,not in user.
+
+
