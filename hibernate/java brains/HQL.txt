@@ -1,0 +1,65 @@
+HIBERNATE QUERY LANGUAGE- HQL
+
+hql is just like sql through which we can perform DB level operation , but in a ORM way.
+
+after session.beginTransaction(), we can write:
+
+Query q=session.creatQuery("from UserDetails where id>5");
+in above statement,we donot use table name,we use the class name.
+
+List<UserDetails> users=(List<UserDetails>) q.list();
+above statmemt return the list just like the resultSet in jdbc.
+
+after all hql statements,we must commit and close the session.
+
+if we donot want all the data,we can write as:
+q.setFirstResult(5);//it skips the starting five entries
+q.setMaxResults(4);//it will select only 4 elements i.e 6,7,8 and 9th entry
+
+
+if we want only a column to be retrieved,we can use:
+Query q=session.creatQuery("select userName from UserDetails");
+List<String> userNames=(List<String>) q.list();// here the q.list() doesnot return object,it returns string.
+
+so we can perform those operation which sql can. 
+
+parameter binding:
+Query q=session.creatQuery("from UserDetails where userId = ?");
+q.setInteger(0,8);//first parameter is a position and second parameter is userId.
+
+we use could have used:
+String id="5";
+Query q=session.creatQuery("select userName from UserDetails where userId= "+id);
+
+but this can create security risks like sql injection as some on could modify id value to "5 or 1=1" by which all the entries are selected.
+
+we can also use:
+Query q=session.creatQuery("from UserDetails where userId > :uId and username= :uName);
+q.setInteger("uId",4);
+q.setInteger("uName","sai");
+
+
+in the above statements,we are hard coding the HQL queries. we can palce them in annotations as:
+@NamedQuery(name="UserDetails.byId" , query="from UserDetails where userId=?")
+above annotation has to be placed uder @Entity .
+
+then in main() , we need to replace the query by:
+Query q=session.getNamedQuery("UserDetails.byId");
+query.setString(0,8);
+
+we can also write native SQL queries as named queries by using @NamedNativeQuery so that hibernate executes the query as it is:
+@NamedNativeQuery(name="UserDetails.byName" , query="select * from User_Details where username = ? " , returnClass=UserDetails.class)
+
+in main():
+Query q=session.getNamedQuery("UserDetails.byName");
+query.setString(0,"sai");
+
+---------------------
+
+we can add conditions and restrictions in HQL by using Criteral API
+
+ 
+
+ 
+
+

@@ -1,0 +1,23 @@
+a entity object can have three states in hibernate:
+
+1) transient: when we have not saved the entity object by hibernate through session.save(),it is transient i.e it is not saved in DB and hibernate really doesnot care about it.
+2) persistent: a entity object behaves as persistent object form session.save() onwards. on session.save(),it is saved in DB and if it is modified after session.save() statement,
+hibernate does the update query to reflect the changes in DB.hibernate continuously keeps track of changes in persistent object.
+the object is pesistent until it is placed between session.save() and session.getTransaction().commit().
+therefore we donot need session.update() after we get the object by session.get() , as we can directly make changes in object and hibernate updates it
+note: on session.get(), hibernate runs select query.
+3) Dispatched : a persistent object behaves as dispatched object after session.getTransaction().commit() and hibernate does not care about it a any more.
+
+persistent object becomes back transient by session.delete(). 
+
+consider a scenario in which we retrieve data into object from DDB and then close the session. then we update that object,open a new session and we save it again. we need not save the object 
+second time by session.save() , we can use session.update(). but if we have not made any changes in between session.close() and opening a new session,and we run session.update(), hibernate
+will still run update query. to avoid it, we must place a  annotaion after @Entity i.e @org.hibernate.annotation.Entity(selectBeforeUpdate=true) . in this case,the hibernate will run the 
+select query before update and compare the changes,if it finds no changes,it doesnot run update query.
+
+difference between save and persist:
+in save(), it returns the serializable object,but persist() doesnot.
+
+
+
+
