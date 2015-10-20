@@ -1,0 +1,15 @@
+
+consider a data stored in object. we want to dispaly it to a client.so we need to present it in UI,in MVC, data is model and view is consider and controller decides how to render the data in UI.
+
+spring mvc is popular due to its feature of IoC/DI.
+
+java object holding data is called model
+mvc contains few parts like:
+
+Front controller(FC): it recieves a request from client.
+Handler Mapper(HM): FC approaches HM to get the actual resource based on the URL recieved. after geting info about
+		    actual resource,FC sends the request to that data generater.
+
+spring uses servlets at its core		    
+
+the FC is dispatcher servlet-it reads a file called spring-dispatcher-servlet.xml 

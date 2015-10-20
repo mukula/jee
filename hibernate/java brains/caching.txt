@@ -1,0 +1,6 @@
+hibernate provide first level of cache i.e by session. when we update a persistent object several time,only one update (last one) is executed,it is due to first level of cache.same is the case 
+with other DB operations like select.
+
+---second level of cache:
+
+all individuals caches have separate first level cache,but second level cache is common to whole application and we can cache over different sessions.

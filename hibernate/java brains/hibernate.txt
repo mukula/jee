@@ -2,12 +2,24 @@ the problem with relation database is its use in java applications.since java is
 extract the from the objects and save it in DB and we have to do it always.one solution is to make a class that extracts all the data members from given objects and save it in DB.this class 
 will do the job of ORM,but ORM is lot more bigger than this job. so we have a complete framework dedicated for this called Hibernate.Hibernate is a great orm tool.
 
+----important interfaces in hibernate---
+
+1) Session
+   an instance of session is lightweight and inexpensive to create and destroy because we may need to do so several times in our application.hibernate session are not thread safe.just
+   like httpsession does session tracking ,hibernate session also does tracking of the associated persistent objects.
+2) SessionFactory
+	we can obtain session instances from session factory. session factory is heavyweight and is meant to be created only once for whole application at startup.if a application has 
+	multiple DB,we need to create session factory for each one of them.
+3)Configuraion
+	we use it to set the location of mapping file and by default it is hibernate.cfg.xml . we do it at startup.then we can use it to create Sessionfactory object.
+
 to use hibernate ,we need to use java bean classes as hibernate uses getters and setter to set and get data.
 session factory- one object per application. we can create multiple sessions from session factory.then we can use session to save model objects . we create sessionfactory only once per
 application
 
 
-new Configuration().configure() : it reads the configuration  file and reads the DB configuration.
+new Configuration().configure() : it reads the configuration  file and reads the DB configuration-it must be there only once per application.it reads the hibernate.cfg.xml file
+everytime it is executed,and if hbm2ddl is set to create , it will drop previous table and create new one.
 
 static members are not persisted by hibernate as static members are meant to be shared by all the classes,so it does not make sense to persist it.
 transient members are also not persisted.else we can give the annotation of @Transient
@@ -39,6 +51,7 @@ in vehicle,not in user.
 to retrieve data , use UserDao us1=(UserDao)session1.get(UserDao.class,1);//second argument is primary key.
 for retrieving data through above statement,we should not set hbm2ddl as create,bcoz the table is dropped and ceated again with no data.
 
+for writing data,we need to begin and commit transaction,but to retrieve data,we do not need transaction.
 common maistake:-
 
 Vehicle vehicle=new Vehicle();
