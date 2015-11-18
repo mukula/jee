@@ -1,0 +1,7 @@
+video wise index 
+
+1) intro 
+2) set up
+3) first hibernate program
+4) writing model classes with annotation
+5) 

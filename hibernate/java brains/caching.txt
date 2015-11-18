@@ -1,6 +1,16 @@
+before performing any kind of data operation in db,hibernate first checks the cache if the result is avaliable,if not it goes to db.
+
 hibernate provide first level of cache i.e by session. when we update a persistent object several time,only one update (last one) is executed,it is due to first level of cache.same is the case 
 with other DB operations like select.
 
 ---second level of cache:
 
 all individuals caches have separate first level cache,but second level cache is common to whole application and we can cache over different sessions.
+to implement second level cache,in hibernate.cfg.xml, change cache provide class to EhCacheProvider.class. before this statement,set cache.use_second_level_cache to true.
+WE NEED TO INCLUDE THE LIBRARY OF ENCACHE,so download encache jar first
+
+next,mention @Cacheable after @Entity
+we can use @Cache in which we can configure caching property like read_only , read_write etc. in read only , hibernate does not checks if the data is modified by any other application.
+In read_write,hibernate will keep track of data of the data is modified or not and it is strict
+we need to configure hibernate.cfg.xml if we want to cache query also as all queries are not cached by default. we also need to add query.setCacheable(true) in entity classS
+

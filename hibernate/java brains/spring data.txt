@@ -1,0 +1,13 @@
+spring data support in hibernate.
+
+the jdbc code we write to access data base is tedious task.this problem is solved by spring data support.
+
+generally,in java,we wish to store objects in data base. 
+in practise ,we make a daoImpl classes to retrive required objects from database. if we use jdbc,we make a class JdbcDaoImpl to retrive required object.after getting that object from database,
+JdbcDaoImpl class returns that object. 
+the advantage of such practise is that a abstraction of data access is maintained,i.e the way in which we are accessing the database is hidden in DaoImpl classes.we can configure that class 
+to work with different types of data access like jdbc , hibernate etc.
+
+ 
+
+ 

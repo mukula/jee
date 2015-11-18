@@ -4,8 +4,8 @@ independently of other classes while doing unit testing. Dependency Injection he
 Spring provides IoC-inversion of control.
 in non IoC methods,we donot have dependency injection. consider a class A that have property of class B.now class A is dependent on class B. so class A can instantiate class B by new operator.
 this method is non-IoC method.in IoC method,we not make the class A instantiate class B.rather we inject this dependency through contructor or setters.thus the control on B is not with class A,
-it is with us as we will be injecting the dependency,hence it is inversion of control.
+it is with us as we will be injecting the dependency,hence it is inversion of control.w
 why such dependency injection?...some advantages are: we can share a common object of B by passing same object of B to different objects of A.and the control is with us i.e we can pass any time.
-this way we avoid tight coupling and achieve loose coupling. as we pass the obejct of B,we can use the concept - coding by inetrafaces by which we can make a interface rather than class of B and 
+this way we avoid tight coupling and achieve loose coupling. as we pass the obejct of B,we can use the concept - coding by inetrfaces by which we can make a interface rather than class of B and 
 pass any obejct of class that implements interface B.
 the testing is also easy in this case as we can inject dummy obeject of type B.

@@ -9,11 +9,13 @@ tomcat checks the xml file ,searches for servlet and instantiates them.
  
 spring is also similar.spring is container of beans. the classes that we configure in spring.xml as bean,they are loaded and contained by spring container.
 
-
-
 we configure the classes in bean tag and we configure that class's dependencies in property tag inside that class's bean's tag.
 by default Application context reads and creates bean objects even before it is get by some other obejct.
 
+we can make object by new operator as Sai s=new Sai(); and we may write this code in several places to get new object. now if we want to change the object,we have to modify everywhere.
+in spring,we donot use new operator.we get the object by application context which reads the spring.xml. now we need to change the class id of bean in spring only to change type of object.
+
+spring not only helps us to create support classes , but it also provide us support classes for things like jdbc, hibernate etc so that we donot have to create them from scratch.
 ---basic bean scopes:
 1)Singleton-only once per Spring container- spring will look for bean defination in spring.xml and create only one object for each defination and then Spring container returns the same obeject
 			for subsequent getBean call,it will not create new obejct. 
@@ -25,7 +27,7 @@ Request- New Bean per sevlet request
 session-new bean per session
  
 ----
-for we application,spring know when to shutdown its context,but for desktop appliactions,spring doesnot,so we need to use another class i.e AbstractApplicationContext and we need to 
+for web application,spring know when to shutdown its context,but for desktop appliactions,spring doesnot,so we need to use another class i.e AbstractApplicationContext and we need to 
 register its shutdown hook	.
  
 --- lifecycle and callbacks---
@@ -41,7 +43,7 @@ we also need to configure this class in spring.xml as value in class attribute i
  
 there are many post processors which act after various activities.we just need to configure them in spring.xml
 
-video16
+video16 - 
 ---beanFactoryPostProcessor---
 we can make a class beanFactoryPostProcessor by implemeting BeanFactoryPostProcessor interface.it can do processing for bean factory before initialization.
 we need to implement its method: postProcessBeanFactory() which takes the argument of beanFactory itself.we can recieve it and process it and need not return it. we need to configure it
@@ -50,14 +52,14 @@ in spring.xml as value for class attribute in bean tag.
 ---	propertyPlaceholderConfigurer---
 we can use it to pickup values from property file and supply in spring.xml .  
 
-video17
+video17 - 
 ---coding by interfaces--
-we must make our bean classes implement  a common interface by which we can unleash the tue power of spring.
+we must make our bean classes implement  a common interface by which we can unleash the true power of spring.
 for eg. we have a bean class Traingle and we have confugured it in spring.xml. we now get the object by getBean. suppose we now want a circle object,then we have to change the code
 in main method.so what we can do is we can make both circle and triangle class implement a interface Shape. now we can collect the obejct by getbean in Shape instance . we must configure
 both circle and traingle class in spring.xml. now we can get any object into shape object by channging the id name in spring.xml. thus we need not hard code the class in main method.
 
-video18
+video18 - 
 -- @Required Annotation
 
 if we dont configure dependency in spring.xml and we use it in the class,then we may get null pointer exception.there may be case that we get this exception after a long time after code
@@ -65,15 +67,26 @@ is deployed and we may suufer huge loss.so its better to know such flaws at time
 of the setter of that property .then we must configure the class RequiredAnnotation class in spring.xml. now immediatly after we execute,spring checks if the dependency was initialized by
 its setter and if not,exception is thrown .so we come to know the flaws after execution i.e even before main method is run.
  
-video19
---- autowire annotation
+video19 - 
+--- autowire annotation- we can use this annotation in place of writing autowire in xml. if the name of @Autowired variable matches any bean in spring.xml,than bean value will be assigned to 
+the variable,else it will search by type . but if there are many beans of same type,there will be error.but if the bean id matches with variable name,it get assigned to it.else we can
+use qualifier name
+if we use this annotation wisely,we need not put applicationcontext and all..
 
-video20
-annotations - Resource,postinitailization,predestroy
+video20 - 
+annotations - Resource- we can use it to avoid specifying the bean dependency.we just need to give the bean name in this annotation.if we donot give the name,the default name is set to 
+name if member variable
 
-video21
-@component-to declare a class as bean
-@Service, @Repository, @Controller
+@postinitailization,@predestroy
+
+video21 - 
+@component-to declare a class as bean-useful when only one kind of bean is required for each class type.to use this annotation,we need to use <context:component-scan> tag in xml. this tag 
+searches for annotations like component,service,repository,controller -all called stereotype annotation.
+@Service
+@Repository- we use it for data classes
+@Controller
+
+
 
 video22
 using Messagesource to get text from property files 

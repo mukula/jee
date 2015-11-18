@@ -71,6 +71,3 @@ user.assign(vehicle);
 
 
 
-
-
-

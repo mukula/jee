@@ -1,6 +1,10 @@
+import annaotation from org.persistence
+import Query from org.hibernate
+
 HIBERNATE QUERY LANGUAGE- HQL
 
 hql is just like sql through which we can perform DB level operation , but in a ORM way.
+hql acts like universal query language as it is database independent . the dialect classes which we provided handles the conversion to sql of underlying database
 
 after session.beginTransaction(), we can write:
 
@@ -56,7 +60,11 @@ query.setString(0,"sai");
 
 ---------------------
 
-we can add conditions and restrictions in HQL by using Criteral API
+we can add conditions and restrictions in HQL by using Criteria API
+
+we can cascade many criteria statement in one line.
+
+to recieve only a particular column,use projections
 
  
 
